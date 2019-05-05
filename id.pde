@@ -1,4 +1,4 @@
-enum gameObj{
+enum id{
  enemy(),
  player(),
  bullet()

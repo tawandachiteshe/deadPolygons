@@ -1,21 +1,26 @@
 PFont font;
  final float STARTY = 300;
   float STARTX = 50;
+  PGraphics pa;
   final float SETTINGSY = 400;
   final float CREDITSY = 500;
   final float EXITY = 600;
   String settings = "SETTINGS";
-class start {
+class start{
+
   void show()
 
   {
     font = createFont("assets/myfont.TTF",70);
     textFont(font);
     strokeWeight(4);
+    createGraphics(1200,728);
     baground = loadImage("assets/startMenu.png");
     baground.resize(width, height);
     image(baground, 0, 0);
-    filter(BLUR,10);
+    filter(BLUR,6);
+
+    
     
     textAlign(CENTER);
     textSize(45);
@@ -42,6 +47,7 @@ class start {
      text("SectorNode Games 2019 ©",width/2,700);
      
      text("version 1.0",50,715);
+    
      mousePressed();
      
   }

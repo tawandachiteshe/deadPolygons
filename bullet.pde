@@ -21,16 +21,16 @@ class bullet extends PVector {
 
     boolean run() {
         display();
-        checkHit();
+        //checkHit();
         return update();
     }
     
-   boolean checkHit(){
+   //boolean checkHit(){
     
-       float  dis = dist(new PVector(x,y),enemyLoc);
-        if(dis<=45)
-          return true;
-        else 
-          return false;
-    }
+   //    //float  dis = dist(new PVector(x,y),enemyLoc);
+   //    // if(dis<=45)
+   //    //   return true;
+   //    // else 
+   //    //   return false;
+   // }
 }

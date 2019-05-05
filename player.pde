@@ -5,17 +5,20 @@ PVector dir;
 float angle;
 float dx, dy;
 float bulletGap;
-float gunX =45,ammo = 100;
+float gunX =45;
 PVector mouse;
-ArrayList<bullet> bullets;
-class player {
+
+class player extends GameObject {
+  PVector PlayerbulletSpd;
+  ArrayList<bullet> bullets;
   player() {
-   bullets = new ArrayList<bullet>();
+    PlayerbulletSpd = new PVector();
+    bullets = new ArrayList<bullet>();
     bulletGap = 10;
     location = new PVector(width/2, height/2);
     acce = new PVector(0.01, 0.1);
     velocity = new PVector(10, 10);
-    dir = new PVector();
+    dir = new PVector(width/2, height/2);
     addBullet();
   }
 
@@ -34,36 +37,35 @@ class player {
     translate(dir.x-45, dir.y-45);
     rotate(angle);
     line(0, 0, gunX, 0);
-    mousePressed();
-
     popMatrix();
+    displayAim();
   }
   void move() {
     keyPressed();
   }
   void addBullet() {
-    bulletSpd.set(mouseX, mouseY, 0);
+    PlayerbulletSpd.set(mouseX, mouseY, 0);
 
-    bulletSpd.sub(dir.sub(gunX, gunX));
-    bulletSpd.normalize();
-    bulletSpd.mult(bulletVel);
-    bullets.add( new bullet(dir, bulletSpd) );
+    PlayerbulletSpd.sub(dir.sub(gunX, gunX));
+    PlayerbulletSpd.normalize();
+    PlayerbulletSpd.mult(bulletVel);
+    bullets.add( new bullet(dir, PlayerbulletSpd) );
   }
   void displayAim() {
     fill(24);
     ellipse(mouseX, mouseY, 3, 3);
   }
-  
   void shoot() {
-    if (mousePressed && frameCount % bulletGap == 0){
-      float d = ammo - bullets.size();
-      if(d!=0)
+
+    if (mousePressed && frameCount % bulletGap == 0) {
+      float d = 100 - bullets.size();
+      if (d!=0)
         addBullet();
     }  
     for ( int b = bullets.size(); b != 0; )
-      if ( bullets.get(--b).run() ) print(""); // bullets.remove(b);
-    
-   // print(bullets.size() + "\t");
+      if ( bullets.get(--b).run() ) print(); // bullets.remove(b);
+
+    // print(bullets.size() + "\t");
   }
   void mousePressed() {
   }

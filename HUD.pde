@@ -20,10 +20,9 @@ boolean checkPlayer(){
     noStroke();
     rect(hudLocation.x, hudLocation.y, 400, 20);
      textSize(24);
-     float d = ammo - bullets.size();
      fill(255,0,0);
      
-    text("ammo: "+d,450,35);
-    text("XP: "+d,700,35);
+    text("ammo: ",450,35);
+    text("XP: ",700,35);
   }
 }

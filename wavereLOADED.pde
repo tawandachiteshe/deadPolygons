@@ -1,22 +1,29 @@
-player s,r;
-PVector bulletSpd = new PVector();
-PGraphics pg;
-bullet ch = new bullet();
-PVector enemyLoc = new PVector(90,90);
+PVector enemyLoc, enemyLoc1;
+GameObject turrets, turrets1, turrets2, turrets3;
+GameObject s,r;
 HUD hud;
-float bulletVel = 12,ds;
-void setup(){
+start starts;
+ ArrayList<GameObject> obj;
+float bulletVel = 12, ds;
+void setup() {
+  obj = new ArrayList<GameObject>();
   //s.addBullet();
   //fullScreen();
-  size(1200,728);
+  //noCursor();
+  starts = new start();
+  enemyLoc = new PVector(90, 90);
+  enemyLoc1 = new PVector(90, 638);
+  size(1200, 728);
   hud = new HUD();
-  s = new player();
-  r = new player();
-   pg = createGraphics(1200, 728);
-  
+  obj.add(new player());
+  obj.add(new enemyTurrets(90,90));
+  obj.add(new enemyTurrets(682,90));
+  obj.add(new enemyTurrets(90,700));
+  obj.add(new enemyTurrets(682,90));
 }
 
-void draw(){
+void draw() {
+  
   background(90);
   //pg.beginDraw();
   //pg.background(255);
@@ -30,9 +37,20 @@ void draw(){
   //if(hud.checkPlayer()){
   // ds = map(dir.x,0,485,0,255);
   //}
+
+println(dir);
+  //image(cursor, mouseX, mouseY);
+ 
+    println(id.player);
   
-  new start().show();
-  //r.show(color(67,21,1));
-  //r.move();
+   hud.show(color(255,0,0));
+   hud.checkPlayer();
+   for(GameObject sd : obj){
+    sd.show(color(34,79,214));
+    sd.shoot();
+    sd.move();
+  
+   }
+  //turrets.show(color(56, 76, 89));
+  //turrets.shoot();
 }
-  
